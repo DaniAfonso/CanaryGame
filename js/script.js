@@ -180,14 +180,13 @@ function recorrerCarpeta() {
       $(data).find("a").attr("href", function (i, val) {
         if (val.match(/\.(jpe?g|png|gif)$/)) {
           $("body").append("<img src='" + folder + val + "'>");
-          imagenes.push(val);
         }
       });
     }
   });
   console.log("Las imagenes son: " + imagenes);
-  $("#imagen1").attr("src", "6.jpg");
-}
+  //$("#imagen1").attr("src", "6.jpg");
+};
 
 jugar();
 recorrerCarpeta();
