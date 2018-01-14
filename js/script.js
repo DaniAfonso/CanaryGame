@@ -156,7 +156,7 @@ function jugar() {
     }
   });
 
-  //dialogFormulario.dialog("open");
+  dialogFormulario.dialog("open");
 };
 
 //Crea un array de objetos aleatorios sin repetirse
@@ -171,6 +171,7 @@ function aleatoriosSinRepetir() {
   console.log(luck);
 };
 
+/*
 function recorrerCarpeta() {
   var dir = "./img/canarias/";
 
@@ -191,6 +192,5 @@ function recorrerCarpeta() {
   console.log("Las imagenes son: " + imagenes);
   //$("#imagen1").attr("src", "6.jpg");
 };
-
+*/
 jugar();
-recorrerCarpeta();
