@@ -172,7 +172,7 @@ function aleatoriosSinRepetir() {
 };
 
 function recorrerCarpeta() {
-  var dir = "./img";
+  var dir = "./img/";
 
   //var dir = "Src/themes/base/images/";
   var fileextension = ".png";
