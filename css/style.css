@@ -1,6 +1,9 @@
-
 #contenedorIslas {
     width: 100%;
+}
+
+.imagen {
+    height: 240px;
 }
 
 .draggable {
