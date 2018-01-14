@@ -172,14 +172,15 @@ function aleatoriosSinRepetir() {
 };
 
 function recorrerCarpeta() {
-  var dir = "./img/";
+  var dir = "./img/canarias/";
 
   //var dir = "Src/themes/base/images/";
-  var fileextension = ".png";
+  var fileextension = ".jpg";
   $.ajax({
     //This will retrieve the contents of the folder if the folder is configured as 'browsable'
     url: dir,
     success: function (data) {
+      console.log("Llega a entrar: ");
       //List all .png file names in the page
       $(data).find("a:contains(" + fileextension + ")").each(function () {
         var filename = this.href.replace(window.location.host, "").replace("http://", "");
