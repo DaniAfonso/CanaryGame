@@ -172,28 +172,18 @@ function aleatoriosSinRepetir() {
 };
 
 function recorrerCarpeta() {
-  var folder = "./img";
+  var dir = "./img";
 
+  //var dir = "Src/themes/base/images/";
+  var fileextension = ".png";
   $.ajax({
-    url: folder,
+    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+    url: dir,
     success: function (data) {
-      $(data).find("a").attr("href", function (i, val) {
-        if (val.match(/\.(jpe?g|png|gif)$/)) {
-          $("body").append("<img src='" + folder + val + "'>");
-          console.log(val);
-        }
-      });
-    }
-  });
-  var folder = "./img/";
-  $.ajax({
-    url: folder,
-    success: function (data) {
-      $(data).find("a").attr("href", function (i, val) {
-        if (val.match(/\.(jpe?g|png|gif)$/)) {
-          $("body").append("<img src='" + folder + val + "'>");
-          console.log(val);
-        }
+      //List all .png file names in the page
+      $(data).find("a:contains(" + fileextension + ")").each(function () {
+        var filename = this.href.replace(window.location.host, "").replace("http://", "");
+        $("body").append("<img src='" + dir + filename + "'>");
       });
     }
   });
