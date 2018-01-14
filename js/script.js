@@ -172,7 +172,7 @@ function aleatoriosSinRepetir() {
 };
 
 function recorrerCarpeta() {
-  var folder = "././img/";
+  var folder = "./img/";
 
   $.ajax({
     url: folder,
