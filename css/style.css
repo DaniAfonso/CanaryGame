@@ -1,18 +1,9 @@
-*{
-    overflow: hidden;
-}
 
 #contenedorIslas {
     width: 100%;
 }
 
-path {
-    background-color: aquamarine;
-}
-
 .draggable {
-    width: 90px;
-    height: 80px;
     padding: 5px;
     float: left;
     margin: 0 10px 10px 0;
@@ -25,7 +16,7 @@ path {
 }
 
 #snaptarget {
-    height: 140px;
+    height: 250px;
 }
 
 

@@ -4,7 +4,7 @@ var dificultad;
 var imagenes = [];
 
 $(function () {
-  $("#draggable").draggable({
+  $("#draggable1").draggable({
     snap: true
   });
   $("#draggable2").draggable({
@@ -180,6 +180,7 @@ function recorrerCarpeta() {
       $(data).find("a").attr("href", function (i, val) {
         if (val.match(/\.(jpe?g|png|gif)$/)) {
           $("body").append("<img src='" + folder + val + "'>");
+          console.log(val);
         }
       });
     }
