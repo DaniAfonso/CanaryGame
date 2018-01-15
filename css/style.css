@@ -1,10 +1,19 @@
 #contenedorIslas {
     width: 100%;
+    /*display: flex;
+    justify-content: center;*/
+}
+#islasSVG {
 }
 
 .imagen {
     height: 240px;
     width: auto;
+}
+.contenedorImagenes {
+    background-color: rgb(252, 228, 198);
+    padding: 1rem;
+    margin-top:30px;
 }
 
 #gallery {

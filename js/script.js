@@ -33,7 +33,7 @@ function inicializarDraggable() {
 
   // There's the gallery and the trash
   var $gallery = $("#gallery"),
-    $trash = $(".conteIsla");
+    $conteIsla = $(".conteIsla");
 
   // Let the gallery items be draggable
   $("li", $gallery).draggable({
@@ -45,11 +45,18 @@ function inicializarDraggable() {
   });
 
   // Let the trash be droppable, accepting the gallery items
-  $trash.droppable({
-    accept: "#gallery > li",
-    drop: function (event, ui) {
-      deleteImage(ui.draggable);
-    }
+  $conteIsla.each(function () {
+    $(this).droppable({
+      accept: "#gallery > li",
+      drop: function (event, ui) {
+        let ruta = ui.draggable[0].children[0].src;
+        let islaImg = ruta.slice(65, 71);
+        let islaCont = $(this)[0].id;
+        if (islaCont == islaImg) {
+          deleteImage(ui.draggable, $(this));
+        }
+      }
+    })
   });
 
   // Let the gallery be droppable as well, accepting items from the trash
@@ -66,11 +73,11 @@ function inicializarDraggable() {
   // Image deletion function
   var recycle_icon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
 
-  function deleteImage($item) {
+  function deleteImage($item, $contIsla) {
     $item.fadeOut(function () {
-      var $list = $("ul", $trash).length ?
-        $("ul", $trash) :
-        $("<ul class='gallery ui-helper-reset'/>").appendTo($trash);
+      var $list = $("ul", $contIsla).length ?
+        $("ul", $contIsla) :
+        $("<ul class='gallery ui-helper-reset'/>").appendTo($contIsla);
 
       $item.find("a.ui-icon-trash").remove();
       $item.append(recycle_icon).appendTo($list).fadeIn(function () {
@@ -140,7 +147,6 @@ function inicializarDraggable() {
     if ($target.is("a.ui-icon-refresh")) {
       recycleImage($item);
     }
-
     return false;
   });
 };
