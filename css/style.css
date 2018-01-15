@@ -4,27 +4,65 @@
 
 .imagen {
     height: 240px;
+    width: auto;
 }
 
-.draggable {
-    padding: 5px;
+#gallery {
     float: left;
-    margin: 0 10px 10px 0;
-    font-size: .9em;
+    width: 100%;
+    min-height: 12em;
 }
 
-.ui-widget-header p,
-.ui-widget-content p {
-    margin: 0;
+.gallery.custom-state-active {
+    background: #eee;
 }
 
-#snaptarget {
-    height: 250px;
+.gallery li {
+    float: left;
+    padding: 0.4em;
+    margin: 0 0.4em 0.4em 0;
+    text-align: center;
+}
+
+.gallery li h5 {
+    margin: 0 0 0.4em;
+    cursor: move;
+}
+
+.gallery li a {
+    float: right;
+}
+
+.gallery li a.ui-icon-zoomin {
+    float: left;
+}
+
+.gallery li img {
+    width: 100%;
+    cursor: move;
+}
+
+#trash {
+    float: right;
+    min-height: 18em;
+    padding: 1%;
+}
+
+#trash h4 {
+    line-height: 16px;
+    margin: 0 0 0.4em;
+}
+
+#trash h4 .ui-icon {
+    float: left;
+}
+
+#trash .gallery h5 {
+    display: none;
 }
 
 
 /** Modal **/
-
 label,
 input {
     display: block;

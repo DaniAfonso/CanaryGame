@@ -105,8 +105,7 @@ function juego() {
         } else if (e.id == "dificil") {
             dificultad = 9;
         }
-
-        rellenarImagenes();
+        crearImagen();
     };
 
     dialogDificultad = $("#dialog-dificultad").dialog({

@@ -12,20 +12,7 @@ function numerosAleatorios(cantidadNumeros, numeroMaximo, repetidos) {
     return luck;
 };
 
-function rellenarImagenes() {
-    let numeroFotos = numerosAleatorios(dificultad, cantidadMaxima, false);
-    let numeroIslas = numerosAleatorios(dificultad, 7, true);
-    let islas = ["teneri", "laGome", "elHier", "laPalm", "granCa", "fuerte", "lanzar"];
-    let path = "./img/canarias/";
-    let extension = ".jpg";
-    let $imgs = $(".imagen");
-    let contador = 0;
 
-    $(".imagen").each(function () {
-        $(this).attr("src", path + islas[numeroIslas[contador]] + "/" + islas[numeroIslas[contador]] + "_" + contador + extension);
-        contador++;
-    });
-};
 
 /*
 function recorrerCarpeta() {
