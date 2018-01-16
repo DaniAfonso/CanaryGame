@@ -1,21 +1,44 @@
+*,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+#changeDif {
+    float: left;
+    width: 20%;
+}
+
+#puntos {
+    float: right;
+    width: 30%;
+}
+
 #contenedorIslas {
     width: 100%;
-    /*display: flex;
-    justify-content: center;*/
+    background-color: rgb(74, 199, 199);
+    z-index: -1;
+    float: left;
 }
-#islasSVG {
+
+#islasSVG {}
+
+.contenedorImagenes {
+    background-color: rgb(252, 228, 198);
+    float: left;
+    padding: 1rem;
+    margin-top: 30px;
 }
 
 .imagen {
     height: 240px;
     width: auto;
 }
-.contenedorImagenes {
-    background-color: rgb(252, 228, 198);
-    padding: 1rem;
-    margin-top:30px;
-}
 
+
+
+
+/*******/
 #gallery {
     float: left;
     width: 100%;
@@ -72,6 +95,7 @@
 
 
 /** Modal **/
+
 label,
 input {
     display: block;

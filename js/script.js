@@ -29,6 +29,14 @@ function rellenarImagenes() {
   inicializarDraggable();
 };
 
+function acierto() {
+
+}
+
+function fallo() {
+
+}
+
 function inicializarDraggable() {
 
   // There's the gallery and the trash
@@ -49,11 +57,16 @@ function inicializarDraggable() {
     $(this).droppable({
       accept: "#gallery > li",
       drop: function (event, ui) {
-        let ruta = ui.draggable[0].children[0].src;
-        let islaImg = ruta.slice(65, 71);
+        let rutaImg = ui.draggable[0].children[0].attributes[1].textContent;
+        let islaImg = rutaImg.slice(15, 21);
         let islaCont = $(this)[0].id;
+        console.log("Imagen: " + islaImg);
+        console.log("Isla: " + islaCont);
         if (islaCont == islaImg) {
           deleteImage(ui.draggable, $(this));
+          acierto();
+        } else {
+          fallo();
         }
       }
     })
