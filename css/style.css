@@ -2,11 +2,30 @@
 html {
     margin: 0;
     padding: 0;
+    
 }
+body {
+    background-color: rgb(36, 97, 77);
+}
+h1 {
+    font-size: 5rem;
+}
+
+#areaJuego {
+    
+   margin: 1rem;
+    text-align: center;
+}
+
 
 #changeDif {
     float: left;
-    width: 20%;
+    width: 30%;
+}
+
+#nombreJugador {
+    float: left;
+    width: 30%;
 }
 
 #puntos {
@@ -14,14 +33,24 @@ html {
     width: 30%;
 }
 
+#nombreJugador {
+    text-align: center;
+}
+
+
 #contenedorIslas {
+    margin-top: 50px;
     width: 100%;
-    background-color: rgb(74, 199, 199);
+    height: 500px;
     z-index: -1;
     float: left;
 }
 
-#islasSVG {}
+#islasSVG {
+    position: absolute;
+    left: 8rem;
+    background-color: blue;
+}
 
 .contenedorImagenes {
     background-color: rgb(252, 228, 198);
@@ -35,10 +64,8 @@ html {
     width: auto;
 }
 
-
-
-
 /*******/
+
 #gallery {
     float: left;
     width: 100%;
@@ -111,11 +138,6 @@ fieldset {
     padding: 0;
     border: 0;
     margin-top: 25px;
-}
-
-h1 {
-    font-size: 1.2em;
-    margin: .6em 0;
 }
 
 div#users-contain {
