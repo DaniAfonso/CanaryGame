@@ -12,8 +12,6 @@ function numerosAleatorios(cantidadNumeros, numeroMaximo, repetidos) {
     return luck;
 };
 
-
-
 /*
 function recorrerCarpeta() {
   var dir = "./img/canarias/";

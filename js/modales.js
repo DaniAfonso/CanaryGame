@@ -1,6 +1,6 @@
-/**** Formulario modal, nuevo usuario. */
-function juego() {
-    var dialogFormulario, form, dialogDificultad,
+/* Modales - formulario, dificultad, puntuaciones, etc. */
+function modales() {
+    var dialogFormulario, form, dialogDificultad, dialogFinal, dialogPuntos,
         emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
         name = $("#name"),
         email = $("#email"),
@@ -67,15 +67,54 @@ function juego() {
         width: 350,
         modal: true,
         buttons: {
-            "Crear un usuario": addUser,
-            Cancel: function () {
-                dialogFormulario.dialog("close");
-            }
+            "Crear un usuario": addUser
         },
         close: function () {
             form[0].reset();
             allFields.removeClass("ui-state-error");
             dialogDificultad.dialog("open");
+        }
+    });
+
+    dialogDificultad = $("#dialog-dificultad").dialog({
+        autoOpen: false,
+        height: 400,
+        width: 350,
+        modal: true,
+        buttons: {
+            "Jugar": empezarJuego
+        },
+        close: function () {
+            form[0].reset();
+            allFields.removeClass("ui-state-error");
+        }
+    });
+
+    dialogFinal = $("#dialog-final").dialog({
+        autoOpen: false,
+        height: 400,
+        width: 350,
+        modal: true,
+        buttons: {
+            "Jugar": empezarJuego
+        },
+        close: function () {
+            form[0].reset();
+            allFields.removeClass("ui-state-error");
+        }
+    });
+
+    dialogPuntos = $("#dialog-puntos").dialog({
+        autoOpen: false,
+        height: 400,
+        width: 350,
+        modal: true,
+        buttons: {
+            "Jugar": empezarJuego
+        },
+        close: function () {
+            form[0].reset();
+            allFields.removeClass("ui-state-error");
         }
     });
 
@@ -93,8 +132,13 @@ function juego() {
     });
 
     function empezarJuego() {
-        console.log("Empezar a jugar!!!");
-        dialogDificultad.dialog("close");
+        if (dificultad != 0) {
+            dialogDificultad.dialog("close");
+            puntos = 0;
+            $("#puntos").text("Puntos: " + puntos);
+        } else {
+            toastr.error("Debes elegir una dificultad!")
+        }
     };
 
     function elegirDificultad(e) {
@@ -108,22 +152,8 @@ function juego() {
         crearImagen();
     };
 
-    dialogDificultad = $("#dialog-dificultad").dialog({
-        autoOpen: false,
-        height: 400,
-        width: 350,
-        modal: true,
-        buttons: {
-            "Jugar": empezarJuego,
-            Cancel: function () {
-                dialogDificultad.dialog("close");
-            }
-        },
-        close: function () {
-            form[0].reset();
-            allFields.removeClass("ui-state-error");
-        }
-    });
-
+    function hola() {
+        console.log("Hola!!!!!");
+    }
     dialogFormulario.dialog("open");
 };
