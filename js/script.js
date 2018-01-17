@@ -1,6 +1,7 @@
 var nombre;
 var correo;
 var dificultad;
+var puntos = 0;
 var cantidadMaxima = 11;
 var imagenes = [];
 
@@ -30,11 +31,21 @@ function rellenarImagenes() {
 };
 
 function acierto() {
-
+  puntos += +20;
+  $("#puntos").text("Puntos: " + puntos);
+  toastr.success('Has ganado 20 puntos');
 }
 
 function fallo() {
+  puntos += -10;
+  $("#puntos").text("Puntos: " + puntos);
+  toastr.error('Has perdido 10 puntos');
+}
 
+function sacarFoto() {
+  puntos += -30;
+  $("#puntos").text("Puntos: " + puntos);
+  toastr.error('Has perdido 30 puntos por tramposo');
 }
 
 function inicializarDraggable() {
@@ -74,12 +85,13 @@ function inicializarDraggable() {
 
   // Let the gallery be droppable as well, accepting items from the trash
   $gallery.droppable({
-    accept: "#trash li",
+    accept: ".conteIsla li",
     classes: {
       "ui-droppable-active": "custom-state-active"
     },
     drop: function (event, ui) {
       recycleImage(ui.draggable);
+      sacarFoto();
     }
   });
 

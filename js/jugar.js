@@ -56,6 +56,7 @@ function juego() {
                 "</tr>");
             dialogFormulario.dialog("close");
             toastr.info('Bienvenido ' + nombre + '!');
+            $("#nombreJugador").text(nombre);
         }
         return valid;
     }
@@ -93,7 +94,6 @@ function juego() {
 
     function empezarJuego() {
         console.log("Empezar a jugar!!!");
-
         dialogDificultad.dialog("close");
     };
 
