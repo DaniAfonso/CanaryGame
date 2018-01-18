@@ -37,7 +37,7 @@ Modales.prototype.inicializar = function () {
         modal: true,
         buttons: {
             "Jugar": () => {
-                this.elegirDificultad($("input[name=dificultad]:checked").val())
+                this.elegirDificultad($("input[name=dificultad]:checked").val());
                 this.dialogDificultad.dialog("close");
                 puntos = 0;
                 $("#puntos").text("Puntos: " + puntos);
@@ -56,13 +56,20 @@ Modales.prototype.inicializar = function () {
         width: 350,
         modal: true,
         buttons: {
-            "Puntuaciones": this.empezarJuego.bind(this),
-            "Fin": this.empezarJuego.bind(this)
+            "Nueva Partida": () => {
+                this.dialogFinal.dialog("close");
+                this.dialogDificultad.dialog("open");
+            },
+            "Fin": () => {
+                $("#puntosNombre").html("Nombre: " + nombre);
+                $("#puntosPuntos").html("Puntos: " + puntos);
+                this.dialogFinal.dialog("close");
+                this.dialogPuntos.dialog("open");
+            }
         },
         close: () => {
             this.form[0].reset();
             this.allFields.removeClass("ui-state-error");
-
         }
     });
 
@@ -72,7 +79,10 @@ Modales.prototype.inicializar = function () {
         width: 350,
         modal: true,
         buttons: {
-            "Jugar": this.empezarJuego.bind(this)
+            "Jugar": () => {
+                this.dialogPuntos.dialog("close");
+                this.dialogDificultad.dialog("open");
+            }
         },
         close: () => {
             this.form[0].reset();

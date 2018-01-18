@@ -6,8 +6,7 @@ var cantidadMaxima = 11;
 var coor = [];
 var moda = new Modales();
 
-$( document ).ready(function() {
-  //moda.hola();
+$(document).ready(function () {
   moda.dialogFormulario.dialog("open");
 });
 
@@ -18,6 +17,7 @@ function crearImagen() {
   }
   eleccionImagenes();
 };
+
 
 function eleccionImagenes() {
   cor = [];
@@ -30,25 +30,26 @@ function eleccionImagenes() {
       item[i] = [islaAux, fotoAux];
     } else
       item[i] = [islasMinimas[i], fotoAux];
-    if (cor.indexOf(item[i][0]) === -1) {
+    if (cor.indexOf(item[i]) === -1) {
+      
       cor.push(item[i]);
     } else {
       i--;
+      console.log("Hola entra")
     }
   }
-  /*
+  
   console.log(cor);
   console.log(cor[0]);
   console.log(cor[0][0]);
   console.log(cor[0][1]);
-  */
+  
   displayNoneIslas();
   rellenarImagenes();
 }
 
 function displayNoneIslas() {
   $("path").each(function (i, element) {
-    //console.log(element);
     $(element).css("display", "none");
     $("#cajasIslas").children().eq(i).css("display", "none");
   })
@@ -72,10 +73,6 @@ function rellenarImagenes() {
 function fin() {
   toastr.success('Has acabado la partida con: ' + puntos + ' puntos.');
   moda.hola();
-  //modales().dialogFormulario.dialog("open");
-  //modales().hola();
-  //console.log(modales().hola);
-  //dialogFormulario.dialog("open");
 }
 
 function acierto() {
