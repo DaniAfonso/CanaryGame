@@ -4,6 +4,10 @@ html {
     padding: 0;
 }
 
+.ui-button.ui-corner-all.ui-widget.ui-button-icon-only.ui-dialog-titlebar-close {
+    display: none;
+}
+
 body {
     background-color: #dadf99;
 }
@@ -59,15 +63,17 @@ path {
     background-color: rgb(39, 149, 208);
 }
 
-#contenedorIslas > #poss > #cajasIslas > .conteIsla {
+#contenedorIslas>#poss>#cajasIslas>.conteIsla {
     background: none;
     border: none;
 }
-#contenedorIslas > #poss > #cajasIslas > .conteIsla > h4 {
+
+#contenedorIslas>#poss>#cajasIslas>.conteIsla>h4 {
     background: none;
     border: none;
     color: #fff;
 }
+
 .contenedorImagenes {
     float: left;
     padding: 1rem;
@@ -78,20 +84,19 @@ path {
     width: auto;
 }
 
-#lanzar > .miniatura {
+#lanzar>.miniatura {
     background-color: none;
     border: none;
 }
 
-#lanzar > .miniatura > .ui-widget-content {
+#lanzar>.miniatura>.ui-widget-content {
     background-color: none;
     border: none;
 }
-#lanzar > .miniatura > .ui-widget-content > .imagen {
+
+#lanzar>.miniatura>.ui-widget-content>.imagen {
     padding: 5px;
 }
-
-
 
 
 /** Gallery **/

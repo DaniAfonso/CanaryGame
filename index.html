@@ -95,12 +95,24 @@
 
 
     <!-- Modal dificultad -->
+    <!--
     <div id="dialog-dificultad" title="Elegir dificultad">
         <p class="dificultad">Elije la dificultad que creas conveniente:</p>
         <fieldset>
             <button id="facil">Facil</button>
             <button id="normal">Normal</button>
             <button id="dificil">Experto</button>
+            <input type="button" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </div>
+-->
+    <!-- Modal dificultad -->
+    <div id="dialog-dificultad" title="Elegir dificultad">
+        <p class="dificultad">Elije la dificultad que creas conveniente:</p>
+        <fieldset>
+            <input type="radio" value="4" name="dificultad" checked> Facil
+            <input type="radio" value="7" name="dificultad"> Noramal
+            <input type="radio" value="9" name="dificultad"> Experto
             <!-- Allow form submission with keyboard without duplicating the dialog button -->
             <input type="button" tabindex="-1" style="position:absolute; top:-1000px">
         </fieldset>
@@ -125,7 +137,7 @@
         <p class="final">Has acabado el juego, ¿deseas volver a jugar?</p>
         <fieldset>
             <button id="nuevaPartida">Nueva Partida</button>
-            <button id="fin">Fin</button>
+            <button id="fin">Puntuaciones</button>
             <!-- Allow form submission with keyboard without duplicating the dialog button -->
             <input type="button" tabindex="-1" style="position:absolute; top:-1000px">
         </fieldset>

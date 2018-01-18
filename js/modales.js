@@ -1,159 +1,176 @@
 /* Modales - formulario, dificultad, puntuaciones, etc. */
-function modales() {
-    var dialogFormulario, form, dialogDificultad, dialogFinal, dialogPuntos,
-        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-        name = $("#name"),
-        email = $("#email"),
-        allFields = $([]).add(name).add(email),
-        tips = $(".validateTips");
+function Modales() {
+    this.dialogFormulario;
+    this.form;
+    this.dialogDificultad;
+    this.dialogFinal;
+    this.dialogPuntos;
+    this.emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    this.name = $("#name");
+    this.email = $("#email");
+    this.allFields = $([]).add(this.name).add(this.email);
+    this.tips = $(".validateTips");
 
-    function updateTips(t) {
-        tips
-            .text(t)
-            .addClass("ui-state-highlight");
-        setTimeout(function () {
-            tips.removeClass("ui-state-highlight", 1500);
-        }, 500);
-    }
+    this.inicializar();
+}
 
-    function checkLength(o, n, min, max) {
-        if (o.val().length > max || o.val().length < min) {
-            o.addClass("ui-state-error");
-            updateTips("La longitud del " + n + " debe estar comprendida entre " +
-                min + " y " + max + ".");
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    function checkRegexp(o, regexp, n) {
-        if (!(regexp.test(o.val()))) {
-            o.addClass("ui-state-error");
-            updateTips(n);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    function addUser() {
-        var valid = true;
-        allFields.removeClass("ui-state-error");
-
-        valid = valid && checkLength(name, "nombre", 3, 100);
-        valid = valid && checkLength(email, "email", 6, 80);
-
-        valid = valid && checkRegexp(name, /^[a-z]([a-z_\s])+$/i, "El nombre de usuario solo puede contener letras y espacios.");
-        valid = valid && checkRegexp(email, emailRegex, "daniFenomeno@gmail.com");
-
-        if (valid) {
-            nombre = name.val();
-            correo = email.val();
-            $("#users tbody").append("<tr>" +
-                "<td>" + name.val() + "</td>" +
-                "<td>" + email.val() + "</td>" +
-                "</tr>");
-            dialogFormulario.dialog("close");
-            toastr.info('Bienvenido ' + nombre + '!');
-            $("#nombreJugador").text(nombre);
-        }
-        return valid;
-    }
-
-    dialogFormulario = $("#dialog-form").dialog({
+Modales.prototype.inicializar = function () {
+    this.dialogFormulario = $("#dialog-form").dialog({
         autoOpen: false,
         height: 400,
         width: 350,
         modal: true,
         buttons: {
-            "Crear un usuario": addUser
+            "Crear un usuario": this.addUser.bind(this)
         },
-        close: function () {
-            form[0].reset();
-            allFields.removeClass("ui-state-error");
-            dialogDificultad.dialog("open");
+        close: () => {
+            this.form[0].reset();
+            this.allFields.removeClass("ui-state-error");
+            this.dialogDificultad.dialog("open");
         }
     });
 
-    dialogDificultad = $("#dialog-dificultad").dialog({
+    this.dialogDificultad = $("#dialog-dificultad").dialog({
         autoOpen: false,
         height: 400,
         width: 350,
         modal: true,
         buttons: {
-            "Jugar": empezarJuego
+            "Jugar": () => {
+                this.elegirDificultad($("input[name=dificultad]:checked").val())
+                this.dialogDificultad.dialog("close");
+                puntos = 0;
+                $("#puntos").text("Puntos: " + puntos);
+            }
         },
-        close: function () {
-            form[0].reset();
-            allFields.removeClass("ui-state-error");
+        close: () => {
+            this.form[0].reset();
+            this.allFields.removeClass("ui-state-error");
+
         }
     });
 
-    dialogFinal = $("#dialog-final").dialog({
+    this.dialogFinal = $("#dialog-final").dialog({
         autoOpen: false,
         height: 400,
         width: 350,
         modal: true,
         buttons: {
-            "Jugar": empezarJuego
+            "Puntuaciones": this.empezarJuego.bind(this),
+            "Fin": this.empezarJuego.bind(this)
         },
-        close: function () {
-            form[0].reset();
-            allFields.removeClass("ui-state-error");
+        close: () => {
+            this.form[0].reset();
+            this.allFields.removeClass("ui-state-error");
+
         }
     });
 
-    dialogPuntos = $("#dialog-puntos").dialog({
+    this.dialogPuntos = $("#dialog-puntos").dialog({
         autoOpen: false,
         height: 400,
         width: 350,
         modal: true,
         buttons: {
-            "Jugar": empezarJuego
+            "Jugar": this.empezarJuego.bind(this)
         },
-        close: function () {
-            form[0].reset();
-            allFields.removeClass("ui-state-error");
+        close: () => {
+            this.form[0].reset();
+            this.allFields.removeClass("ui-state-error");
         }
     });
 
-    form = dialogFormulario.find("form").on("submit", function (event) {
+    this.form = this.dialogFormulario.find("form").on("submit", (event) => {
         event.preventDefault();
-        addUser();
+        this.addUser();
     });
 
-    $("#changeDif").button().on("click", function () {
-        dialogDificultad.dialog("open");
+    $("#changeDif").button().on("click", () => {
+        this.dialogDificultad.dialog("open");
     });
+    /*
+        $("#facil, #normal, #dificil").button().on("click", () => {
+            this.elegirDificultad($("#facil, #normal, #dificil").button());
+        });
+    */
 
-    $("#facil, #normal, #dificil").button().on("click", function () {
-        elegirDificultad(this);
-    });
-
-    function empezarJuego() {
-        if (dificultad != 0) {
-            dialogDificultad.dialog("close");
-            puntos = 0;
-            $("#puntos").text("Puntos: " + puntos);
-        } else {
-            toastr.error("Debes elegir una dificultad!")
-        }
-    };
-
-    function elegirDificultad(e) {
-        if (e.id == "facil") {
-            dificultad = 4;
-        } else if (e.id == "normal") {
-            dificultad = 7;
-        } else if (e.id == "dificil") {
-            dificultad = 9;
-        }
-        crearImagen();
-    };
-
-    function hola() {
-        console.log("Hola!!!!!");
+}
+Modales.prototype.updateTips = function (t) {
+    this.tips
+        .text(t)
+        .addClass("ui-state-highlight");
+    setTimeout(function () {
+        tips.removeClass("ui-state-highlight", 1500);
+    }, 500);
+}
+Modales.prototype.checkLength = function (o, n, min, max) {
+    if (o.val().length > max || o.val().length < min) {
+        o.addClass("ui-state-error");
+        updateTips("La longitud del " + n + " debe estar comprendida entre " +
+            min + " y " + max + ".");
+        return false;
+    } else {
+        return true;
     }
-    dialogFormulario.dialog("open");
+}
+Modales.prototype.checkRegexp = function (o, regexp, n) {
+    if (!(regexp.test(o.val()))) {
+        o.addClass("ui-state-error");
+        updateTips(n);
+        return false;
+    } else {
+        return true;
+    }
+}
+
+Modales.prototype.addUser = function () {
+    var valid = true;
+    $(this.allFields).removeClass("ui-state-error");
+
+    valid = valid && this.checkLength(this.name, "nombre", 3, 100);
+    valid = valid && this.checkLength(this.email, "email", 6, 80);
+
+    valid = valid && this.checkRegexp(this.name, /^[a-z]([a-z_\s])+$/i, "El nombre de usuario solo puede contener letras y espacios.");
+    valid = valid && this.checkRegexp(this.email, this.emailRegex, "daniFenomeno@gmail.com");
+
+    if (valid) {
+        nombre = this.name.val();
+        correo = this.email.val();
+        $("#users tbody").append("<tr>" +
+            "<td>" + this.name.val() + "</td>" +
+            "<td>" + this.email.val() + "</td>" +
+            "</tr>");
+        this.dialogFormulario.dialog("close");
+        toastr.info('Bienvenido ' + nombre + '!');
+        $("#nombreJugador").text(nombre);
+    }
+    return valid;
+}
+
+Modales.prototype.empezarJuego = function () {
+    if (dificultad != 0) {
+        this.dialogDificultad.dialog("close");
+        puntos = 0;
+        $("#puntos").text("Puntos: " + puntos);
+    } else {
+        toastr.error("Debes elegir una dificultad!")
+    }
 };
+
+Modales.prototype.elegirDificultad = function (e) {
+    /*
+    if (e.id == "facil") {
+        dificultad = 4;
+    } else if (e.id == "normal") {
+        dificultad = 7;
+    } else if (e.id == "dificil") {
+        dificultad = 9;
+    }
+    */
+    dificultad = e;
+    crearImagen();
+};
+
+Modales.prototype.hola = function () {
+    this.dialogFinal.dialog("open");
+}

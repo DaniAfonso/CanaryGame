@@ -4,8 +4,12 @@ var dificultad = 0;
 var puntos = 0;
 var cantidadMaxima = 11;
 var coor = [];
-//var moda = new modales();
-modales();
+var moda = new Modales();
+
+$( document ).ready(function() {
+  //moda.hola();
+  moda.dialogFormulario.dialog("open");
+});
 
 function crearImagen() {
   $("li").remove();
@@ -67,6 +71,7 @@ function rellenarImagenes() {
 
 function fin() {
   toastr.success('Has acabado la partida con: ' + puntos + ' puntos.');
+  moda.hola();
   //modales().dialogFormulario.dialog("open");
   //modales().hola();
   //console.log(modales().hola);
