@@ -2,7 +2,7 @@ var nombre;
 var correo;
 var dificultad = 0;
 var puntos = 0;
-var cantidadMaxima = 11;
+var cantidadMaxima = 17;
 var coor = [];
 var moda = new Modales();
 
@@ -69,13 +69,10 @@ function eleccionImagenes() {
         isla: islasMinimas[i],
         foto: fotoAux
       };
-    if (include(cor, item)) {
+    if (include(cor, item))
       i--;
-
-    } else {
+    else
       cor.push(item);
-
-    }
   }
   displayNoneIslas();
   rellenarImagenes();
