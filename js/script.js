@@ -18,7 +18,7 @@ function crearImagen() {
   eleccionImagenes();
 };
 
-
+/*
 function eleccionImagenes() {
   cor = [];
   let islasMinimas = numerosAleatorios(4, 6, false);
@@ -47,6 +47,43 @@ function eleccionImagenes() {
   displayNoneIslas();
   rellenarImagenes();
 }
+*/
+
+function eleccionImagenes() {
+  cor = [];
+  let islasMinimas = numerosAleatorios(4, 6, false);
+  let item = {
+    isla: 0,
+    foto: 0
+  };
+  for (let i = 0; i < dificultad; i++) {
+    let fotoAux = Math.floor(Math.random() * cantidadMaxima);
+    if (i >= islasMinimas.length) {
+      let islaAux = Math.floor(Math.random() * 7);
+      item = {
+        isla: islaAux,
+        foto: fotoAux
+      };
+    } else
+      item = {
+        isla: islasMinimas[i],
+        foto: fotoAux
+      };
+    if (include(cor, item)) {
+      i--;
+
+    } else {
+      cor.push(item);
+
+    }
+  }
+  displayNoneIslas();
+  rellenarImagenes();
+}
+
+function include(arr, obj) {
+  return (arr.indexOf(obj) != -1);
+}
 
 function displayNoneIslas() {
   $("path").each(function (i, element) {
@@ -62,9 +99,9 @@ function rellenarImagenes() {
   let $imgs = $(".imagen");
 
   $(".imagen").each(function (i) {
-    $(this).attr("src", path + islas[cor[i][0]] + "/" + islas[cor[i][0]] + "_" + cor[i][1] + extension);
-    $("path").eq(cor[i][0]).css("display", "initial");
-    $("#cajasIslas").children().eq(cor[i][0]).css("display", "initial");
+    $(this).attr("src", path + islas[cor[i].isla] + "/" + islas[cor[i].isla] + "_" + cor[i].foto + extension);
+    $("path").eq(cor[i].isla).css("display", "initial");
+    $("#cajasIslas").children().eq(cor[i].isla).css("display", "initial");
   });
 
   inicializarDraggable();
